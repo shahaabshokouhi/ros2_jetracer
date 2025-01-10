@@ -35,17 +35,10 @@ class PID(Node):
             qos_profile
         )
 
-        self.timer = self.create_timer(0.2, self.pid_controller)
+        self.timer = self.create_timer(0.2, self.print_pose)
 
-    def pid_controller(self):
-        twist = Twist()
-        # Implement PID logic here
-        # For demonstration, we will just publish a constant velocity
-        twist.linear.x = 0.5
-        twist.angular.z = 0.6
-        self.cmd_publish.publish(twist)
-
-
+    def print_pose(self):
+        pass
 
     def odom_callback(self, msg):
 
