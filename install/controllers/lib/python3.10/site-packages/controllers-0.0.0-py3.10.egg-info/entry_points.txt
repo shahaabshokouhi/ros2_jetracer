@@ -1,0 +1,3 @@
+[console_scripts]
+pid = controllers.pid:main
+

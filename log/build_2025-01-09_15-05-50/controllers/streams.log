@@ -1,0 +1,17 @@
+[0.978s] Invoking command in '/home/shahab/ros2_jetracer/src/controllers': PYTHONPATH=/home/shahab/ros2_jetracer/build/controllers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/controllers build --build-base /home/shahab/ros2_jetracer/build/controllers/build install --record /home/shahab/ros2_jetracer/build/controllers/install.log --single-version-externally-managed install_data
+[1.333s] running egg_info
+[1.334s] writing ../../build/controllers/controllers.egg-info/PKG-INFO
+[1.335s] writing dependency_links to ../../build/controllers/controllers.egg-info/dependency_links.txt
+[1.335s] writing entry points to ../../build/controllers/controllers.egg-info/entry_points.txt
+[1.335s] writing requirements to ../../build/controllers/controllers.egg-info/requires.txt
+[1.335s] writing top-level names to ../../build/controllers/controllers.egg-info/top_level.txt
+[1.339s] reading manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+[1.340s] writing manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+[1.340s] running build
+[1.340s] running build_py
+[1.342s] running install
+[1.342s] running install_lib
+[1.344s] running install_data
+[1.344s] creating /home/shahab/ros2_jetracer/install/controllers/share/controllers/launch
+[1.345s] error: can't copy 'launch/pid_bridge_gazebo.launch.py': doesn't exist or not a regular file
+[1.385s] Invoked command in '/home/shahab/ros2_jetracer/src/controllers' returned '1': PYTHONPATH=/home/shahab/ros2_jetracer/build/controllers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/controllers build --build-base /home/shahab/ros2_jetracer/build/controllers/build install --record /home/shahab/ros2_jetracer/build/controllers/install.log --single-version-externally-managed install_data

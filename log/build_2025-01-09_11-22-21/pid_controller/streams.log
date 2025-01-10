@@ -1,0 +1,33 @@
+[0.844s] Invoking command in '/home/shahab/ros2_jetracer/src/pid_controller': PYTHONPATH=/home/shahab/ros2_jetracer/build/pid_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shahab/ros2_jetracer/install/pid_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/pid_controller build --build-base /home/shahab/ros2_jetracer/build/pid_controller/build install --record /home/shahab/ros2_jetracer/build/pid_controller/install.log --single-version-externally-managed install_data
+[1.100s] running egg_info
+[1.100s] creating ../../build/pid_controller/pid_controller.egg-info
+[1.101s] writing ../../build/pid_controller/pid_controller.egg-info/PKG-INFO
+[1.101s] writing dependency_links to ../../build/pid_controller/pid_controller.egg-info/dependency_links.txt
+[1.101s] writing entry points to ../../build/pid_controller/pid_controller.egg-info/entry_points.txt
+[1.101s] writing requirements to ../../build/pid_controller/pid_controller.egg-info/requires.txt
+[1.101s] writing top-level names to ../../build/pid_controller/pid_controller.egg-info/top_level.txt
+[1.101s] writing manifest file '../../build/pid_controller/pid_controller.egg-info/SOURCES.txt'
+[1.103s] reading manifest file '../../build/pid_controller/pid_controller.egg-info/SOURCES.txt'
+[1.104s] writing manifest file '../../build/pid_controller/pid_controller.egg-info/SOURCES.txt'
+[1.104s] running build
+[1.104s] running build_py
+[1.104s] creating /home/shahab/ros2_jetracer/build/pid_controller/build
+[1.104s] creating /home/shahab/ros2_jetracer/build/pid_controller/build/lib
+[1.105s] creating /home/shahab/ros2_jetracer/build/pid_controller/build/lib/pid_controller
+[1.105s] copying pid_controller/__init__.py -> /home/shahab/ros2_jetracer/build/pid_controller/build/lib/pid_controller
+[1.107s] running install
+[1.107s] running install_lib
+[1.108s] creating /home/shahab/ros2_jetracer/install/pid_controller/lib/python3.10/site-packages/pid_controller
+[1.108s] copying /home/shahab/ros2_jetracer/build/pid_controller/build/lib/pid_controller/__init__.py -> /home/shahab/ros2_jetracer/install/pid_controller/lib/python3.10/site-packages/pid_controller
+[1.108s] byte-compiling /home/shahab/ros2_jetracer/install/pid_controller/lib/python3.10/site-packages/pid_controller/__init__.py to __init__.cpython-310.pyc
+[1.109s] running install_data
+[1.109s] creating /home/shahab/ros2_jetracer/install/pid_controller/share/ament_index
+[1.109s] creating /home/shahab/ros2_jetracer/install/pid_controller/share/ament_index/resource_index
+[1.109s] creating /home/shahab/ros2_jetracer/install/pid_controller/share/ament_index/resource_index/packages
+[1.109s] copying resource/pid_controller -> /home/shahab/ros2_jetracer/install/pid_controller/share/ament_index/resource_index/packages
+[1.109s] copying package.xml -> /home/shahab/ros2_jetracer/install/pid_controller/share/pid_controller
+[1.110s] running install_egg_info
+[1.111s] Copying ../../build/pid_controller/pid_controller.egg-info to /home/shahab/ros2_jetracer/install/pid_controller/lib/python3.10/site-packages/pid_controller-0.0.0-py3.10.egg-info
+[1.112s] running install_scripts
+[1.134s] writing list of installed files to '/home/shahab/ros2_jetracer/build/pid_controller/install.log'
+[1.165s] Invoked command in '/home/shahab/ros2_jetracer/src/pid_controller' returned '0': PYTHONPATH=/home/shahab/ros2_jetracer/build/pid_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shahab/ros2_jetracer/install/pid_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/pid_controller build --build-base /home/shahab/ros2_jetracer/build/pid_controller/build install --record /home/shahab/ros2_jetracer/build/pid_controller/install.log --single-version-externally-managed install_data
