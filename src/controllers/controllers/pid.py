@@ -35,20 +35,9 @@ class PID(Node):
             qos_profile
         )
 
-        self.timer = self.create_timer(0.2, self.print_pose)
+        # self.timer = self.create_timer(0.2, self.print_pose)
 
-    def print_pose(self):
-        pass
-
-    def odom_callback(self, msg):
-
-        self.position = msg.pose.pose.position
-        orientation = msg.pose.pose.orientation
-
-        # Convert quaternion to yaw
-        siny_cosp = 2 * (orientation.w * orientation.z + orientation.x * orientation.y)
-        cosy_cosp = 1 - 2 * (orientation.y**2 + orientation.z**2)
-        self.yaw = math.atan2(siny_cosp, cosy_cosp)
+    def pid_controller(self):
 
         # PID contoller
         target_x = 5
@@ -83,12 +72,25 @@ class PID(Node):
             self.cmd.linear.x = self.x_speed
             self.cmd.angular.z = angular_velocity
 
-        self.cmd_publish.publish(self.cmd)    
-
-        # Print the current position and yaw
+        self.cmd_publish.publish(self.cmd) 
+                # Print the current position and yaw
         self.get_logger().info(
             f"Position: x={x_robot}, y={y_robot} | Yaw: {math.degrees(yaw_robot):.2f} degrees"
         )
+
+    def odom_callback(self, msg):
+
+        self.position = msg.pose.pose.position
+        orientation = msg.pose.pose.orientation
+
+        # Convert quaternion to yaw
+        siny_cosp = 2 * (orientation.w * orientation.z + orientation.x * orientation.y)
+        cosy_cosp = 1 - 2 * (orientation.y**2 + orientation.z**2)
+        self.yaw = math.atan2(siny_cosp, cosy_cosp)
+
+        self.pid_controller()
+
+
 
 def main(args=None):
     rclpy.init(args=args)

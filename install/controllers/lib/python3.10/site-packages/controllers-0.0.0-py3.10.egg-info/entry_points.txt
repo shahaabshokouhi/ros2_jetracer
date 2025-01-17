@@ -1,3 +1,4 @@
 [console_scripts]
 pid = controllers.pid:main
+pid_obs_avoidance = controllers.pid_obs_avoidance:main
 

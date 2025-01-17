@@ -11,6 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/pid_bridge_gazebo.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/pid_obs_bridge_gazebo.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -22,6 +23,7 @@ setup(
     entry_points={
         'console_scripts': [
             'pid = controllers.pid:main',
+            'pid_obs_avoidance = controllers.pid_obs_avoidance:main',
         ],
     },
 )

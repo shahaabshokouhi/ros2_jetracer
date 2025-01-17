@@ -1,0 +1,24 @@
+[0.664s] Invoking command in '/home/shahab/ros2_jetracer/src/controllers': PYTHONPATH=/home/shahab/ros2_jetracer/build/controllers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/controllers build --build-base /home/shahab/ros2_jetracer/build/controllers/build install --record /home/shahab/ros2_jetracer/build/controllers/install.log --single-version-externally-managed install_data
+[0.923s] running egg_info
+[0.923s] writing ../../build/controllers/controllers.egg-info/PKG-INFO
+[0.924s] writing dependency_links to ../../build/controllers/controllers.egg-info/dependency_links.txt
+[0.924s] writing entry points to ../../build/controllers/controllers.egg-info/entry_points.txt
+[0.924s] writing requirements to ../../build/controllers/controllers.egg-info/requires.txt
+[0.924s] writing top-level names to ../../build/controllers/controllers.egg-info/top_level.txt
+[0.926s] reading manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+[0.926s] writing manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+[0.927s] running build
+[0.927s] running build_py
+[0.927s] copying controllers/pid.py -> /home/shahab/ros2_jetracer/build/controllers/build/lib/controllers
+[0.929s] running install
+[0.929s] running install_lib
+[0.930s] copying /home/shahab/ros2_jetracer/build/controllers/build/lib/controllers/pid.py -> /home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages/controllers
+[0.931s] byte-compiling /home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages/controllers/pid.py to pid.cpython-310.pyc
+[0.932s] running install_data
+[0.932s] running install_egg_info
+[0.934s] removing '/home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages/controllers-0.0.0-py3.10.egg-info' (and everything under it)
+[0.934s] Copying ../../build/controllers/controllers.egg-info to /home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages/controllers-0.0.0-py3.10.egg-info
+[0.935s] running install_scripts
+[0.955s] Installing pid script to /home/shahab/ros2_jetracer/install/controllers/lib/controllers
+[0.955s] writing list of installed files to '/home/shahab/ros2_jetracer/build/controllers/install.log'
+[0.980s] Invoked command in '/home/shahab/ros2_jetracer/src/controllers' returned '0': PYTHONPATH=/home/shahab/ros2_jetracer/build/controllers/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/controllers build --build-base /home/shahab/ros2_jetracer/build/controllers/build install --record /home/shahab/ros2_jetracer/build/controllers/install.log --single-version-externally-managed install_data

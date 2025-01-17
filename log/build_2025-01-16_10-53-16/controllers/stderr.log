@@ -1,0 +1,5 @@
+  File "/home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages/controllers/pid_obs_avoidance.py", line 170
+    self.get_logger().info(f"Target reached at x={x_robot}, y={y_robot}, 
+                           ^
+SyntaxError: unterminated string literal (detected at line 170)
+

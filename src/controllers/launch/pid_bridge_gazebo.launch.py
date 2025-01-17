@@ -28,4 +28,13 @@ def generate_launch_description():
             arguments=['/model/jetracer/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry'],
             output='screen'
         ),
+
+        # Launch the ROS-Ignition bridge for LIDAR data
+        Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name='ros_ign_bridge_lidar',
+            arguments=['/lidar@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan'],
+            output='screen'
+        )
     ])

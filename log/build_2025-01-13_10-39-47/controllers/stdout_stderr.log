@@ -1,0 +1,21 @@
+running egg_info
+writing ../../build/controllers/controllers.egg-info/PKG-INFO
+writing dependency_links to ../../build/controllers/controllers.egg-info/dependency_links.txt
+writing entry points to ../../build/controllers/controllers.egg-info/entry_points.txt
+writing requirements to ../../build/controllers/controllers.egg-info/requires.txt
+writing top-level names to ../../build/controllers/controllers.egg-info/top_level.txt
+reading manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+writing manifest file '../../build/controllers/controllers.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying launch/pid_obs_bridge_gazebo.launch.py -> /home/shahab/ros2_jetracer/install/controllers/share/controllers/launch
+running install_egg_info
+removing '/home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages/controllers-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/controllers/controllers.egg-info to /home/shahab/ros2_jetracer/install/controllers/lib/python3.10/site-packages/controllers-0.0.0-py3.10.egg-info
+running install_scripts
+Installing pid script to /home/shahab/ros2_jetracer/install/controllers/lib/controllers
+Installing pid_obs_avoidance script to /home/shahab/ros2_jetracer/install/controllers/lib/controllers
+writing list of installed files to '/home/shahab/ros2_jetracer/build/controllers/install.log'

@@ -1,9 +1,21 @@
 <?xml version="1.0" ?>
 <sdf version="1.8">
-  <world name="car_world">
-    <physics name="1ms" type="ignored">
+  <world name="jetracer_world">
+    <physics name="default_physics" type="ode">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <solver>
+        <type>quick</type>
+        <iters>500</iters>
+        <precon_iters>50</precon_iters>
+        <sor>1.3</sor>
+        <use_dynamic_moi_rescaling>true</use_dynamic_moi_rescaling>
+      </solver>
+      <constraints>
+        <cfm>1e-5</cfm>
+        <erp>0.8</erp>
+      </constraints>
     </physics>
     <plugin
         filename="libignition-gazebo-physics-system.so"
@@ -42,6 +54,17 @@
               <normal>0 0 1</normal>
             </plane>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>10.0</mu>
+                <mu2>5.0</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0.0</restitution_coefficient>
+            </bounce>
+          </surface>
         </collision>
         <visual name="visual">
           <geometry>
@@ -234,7 +257,7 @@
 
     <model name="obs1">
       <static>true</static>
-      <pose>3.0 3.0 1.25 0 0 0</pose>
+      <pose>2 2 1.25 0 0 0</pose>
       <plugin filename="libignition-gazebo-touchplugin-system.so"
               name="ignition::gazebo::systems::TouchPlugin">
         <target>Jetracer</target>
@@ -273,7 +296,7 @@
 
     <model name="obs2">
       <static>true</static>
-      <pose>-5.0 5.0 1.25 0 0 0</pose>
+      <pose>2 0 1.25 0 0 0</pose>
       <plugin filename="libignition-gazebo-touchplugin-system.so"
               name="ignition::gazebo::systems::TouchPlugin">
         <target>Jetracer</target>
@@ -312,7 +335,7 @@
 
     <model name="obs3">
       <static>true</static>
-      <pose>-4.0 -2.0 1.25 0 0 0</pose>
+      <pose>4.0 0 1.25 0 0 0</pose>
       <plugin filename="libignition-gazebo-touchplugin-system.so"
               name="ignition::gazebo::systems::TouchPlugin">
         <target>Jetracer</target>
@@ -388,18 +411,41 @@
       </link>
     </model>
 
+    <model name="target_marker">
+      <pose>5 1 0.2 0 0 0</pose>
+      <link name="link">
+          <visual name="visual">
+              <geometry>
+                  <sphere>
+                      <radius>0.2</radius>
+                  </sphere>
+              </geometry>
+              <material>
+                  <ambient>1 0 0 1</ambient>
+                  <diffuse>1 0 0 1</diffuse>
+              </material>
+          </visual>
+          <collision name="collision">
+              <geometry>
+                  <sphere>
+                      <radius>0.2</radius>
+                  </sphere>
+              </geometry>
+          </collision>
+      </link>
+    </model>
 
     <model name="jetracer">
-      <pose>0 0 0 0 0 0</pose>
+      <pose relative_to="world">0 0 0 0 0 0</pose>
       <self_collide>false</self_collide>
       <static>false</static>
-      
+     
       <frame name="lidar_frame" attached_to="jetracer/Base">
         <pose>0 0 0.08 0 0 0</pose>
       </frame>
 
       <link name='jetracer/Base'>
-        <pose relative_to='__model__'>0 0 0.033 0 0 0</pose>
+        <pose>0 0 0.033 0 0 0</pose>
         <sensor name="imu_sensor" type="imu">
           <always_on>1</always_on>
           <update_rate>1</update_rate>
@@ -414,10 +460,10 @@
           <ray>
             <scan>
               <horizontal>
-                <samples>640</samples>
+                <samples>120</samples>
                 <resolution>1</resolution>
-                <min_angle>-1.396263</min_angle>
-                <max_angle>1.396263</max_angle>
+                <min_angle>-1.0472</min_angle>
+                <max_angle>1.0472</max_angle>
               </horizontal>
               <vertical>
                 <samples>1</samples>
@@ -428,7 +474,7 @@
             </scan>
             <range>
               <min>0.08</min>
-              <max>10.0</max>
+              <max>1.5</max>
               <resolution>0.01</resolution>
             </range>
           </ray>

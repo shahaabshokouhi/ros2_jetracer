@@ -9,8 +9,11 @@ setup.py
 ../../build/controllers/controllers.egg-info/top_level.txt
 ../../build/controllers/controllers.egg-info/zip-safe
 controllers/__init__.py
+controllers/network.py
 controllers/pid.py
+controllers/pid_obs_avoidance.py
 launch/pid_bridge_gazebo.launch.py
+launch/pid_obs_bridge_gazebo.launch.py
 resource/controllers
 test/test_copyright.py
 test/test_flake8.py

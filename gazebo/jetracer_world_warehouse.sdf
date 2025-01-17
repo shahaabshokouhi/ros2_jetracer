@@ -1,0 +1,572 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="jetracer_world">
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <solver>
+        <type>quick</type>
+        <iters>500</iters>
+        <precon_iters>50</precon_iters>
+        <sor>1.3</sor>
+        <use_dynamic_moi_rescaling>true</use_dynamic_moi_rescaling>
+      </solver>
+      <constraints>
+        <cfm>1e-5</cfm>
+        <erp>0.8</erp>
+      </constraints>
+    </physics>
+    <plugin
+        filename="libignition-gazebo-physics-system.so"
+        name="ignition::gazebo::systems::Physics">
+        <calculate_inertial>true</calculate_inertial>
+    </plugin>
+    <plugin
+        filename="libignition-gazebo-user-commands-system.so"
+        name="ignition::gazebo::systems::UserCommands">
+    </plugin>
+    <plugin
+        filename="libignition-gazebo-scene-broadcaster-system.so"
+        name="ignition::gazebo::systems::SceneBroadcaster">
+    </plugin>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>10.0</mu>
+                <mu2>5.0</mu2>
+              </ode>
+            </friction>
+            <bounce>
+              <restitution_coefficient>0.0</restitution_coefficient>
+            </bounce>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>30 30</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Sensors -->
+    <plugin 
+        filename="libignition-gazebo-contact-system.so"
+        name="ignition::gazebo::systems::Contact">  
+    </plugin>
+
+    <plugin
+        filename="libignition-gazebo-imu-system.so"
+        name="ignition::gazebo::systems::Imu">
+    </plugin>
+
+    <plugin filename="libignition-gazebo-sensors-system.so"
+        name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+
+    <model name="target_marker">
+      <pose>5 1 0.2 0 0 0</pose>
+      <link name="link">
+          <visual name="visual">
+              <geometry>
+                  <sphere>
+                      <radius>0.2</radius>
+                  </sphere>
+              </geometry>
+              <material>
+                  <ambient>1 0 0 1</ambient>
+                  <diffuse>1 0 0 1</diffuse>
+              </material>
+          </visual>
+          <collision name="collision">
+              <geometry>
+                  <sphere>
+                      <radius>0.2</radius>
+                  </sphere>
+              </geometry>
+          </collision>
+      </link>
+    </model>
+
+    <model name="jetracer">
+      <pose relative_to="world">0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+      <static>false</static>
+     
+      <frame name="lidar_frame" attached_to="jetracer/Base">
+        <pose>0 0 0.08 0 0 0</pose>
+      </frame>
+
+      <link name='jetracer/Base'>
+        <pose>0 0 0.033 0 0 0</pose>
+        <sensor name="imu_sensor" type="imu">
+          <always_on>1</always_on>
+          <update_rate>1</update_rate>
+          <visualize>true</visualize>
+          <topic>imu</topic>
+        </sensor>
+
+        <sensor name='gpu_lidar' type='gpu_lidar'>
+          <pose relative_to='lidar_frame'>0 0 0 0 0 0</pose>
+          <topic>lidar</topic>
+          <update_rate>10</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>120</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.0472</min_angle>
+                <max_angle>1.0472</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <resolution>0.01</resolution>
+                <min_angle>0</min_angle>
+                <max_angle>0</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.08</min>
+              <max>1.5</max>
+              <resolution>0.01</resolution>
+            </range>
+          </ray>
+          <alwaysOn>1</alwaysOn>
+          <visualize>true</visualize>
+        </sensor>
+
+        <inertial>
+          <mass>1.329</mass>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.23 0.122 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.23 0.122 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0 1.0 0.0 1</ambient>
+            <diffuse>0.0 1.0 0.0 1</diffuse>
+            <specular>0.0 1.0 0.0 1</specular>
+          </material>
+        </visual>
+      </link>
+      <link name="jetracer/FrontRightWheel">
+        <pose relative_to="jetracer/FrontRightWheelJoint">0 0 0 0 0 0</pose>
+        <inertial>
+          <mass>.05</mass>
+          <inertia>
+            <ixx>0.00003331</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0000204</iyy>
+            <iyz>0</iyz>
+            <izz>0.0000204</izz>
+          </inertia>
+        </inertial>
+        <gravity>true</gravity>
+        <velocity_decay/>
+        <visual name="jetracer/FrontRightWheelVisual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>meshes/Wheel.dae</uri>
+              <scale>0.9041 0.866 0.9041</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="jetracer/FrontRightWheelCollision">
+          <pose>0 .015 0 -1.5707 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.026</length>
+              <radius>0.033</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>1.0</mu2>
+                <fdir1>0 0 1</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <link name="jetracer/FrontRightWheelSteering">
+        <pose relative_to="jetracer/FrontRightWheelSteeringJoint">0 0 0 0 0 0</pose>
+        <inertial>
+          <mass>0.005</mass>
+          <inertia>
+            <ixx>0.0000018</ixx>
+            <iyy>0.0000018</iyy>
+            <izz>0.0000018</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name="jetracer/FrontLeftWheel">
+        <pose relative_to="jetracer/FrontLeftWheelJoint">0 0 0 0 0 0</pose>
+        <inertial>
+          <mass>.05</mass>
+          <inertia>
+            <ixx>0.00003331</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0000204</iyy>
+            <iyz>0</iyz>
+            <izz>0.0000204</izz>
+          </inertia>
+        </inertial>
+        <gravity>true</gravity>
+        <velocity_decay/>
+        <visual name="jetracer/FrontLeftWheelVisual">
+          <pose>0 0 0 0 0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>meshes/Wheel.dae</uri>
+              <scale>0.9041 0.866 0.9041</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="jetracer/FrontLeftWheelCollision">
+          <pose>0 -.015 0 -1.5707 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.026</length>
+              <radius>0.033</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>1.0</mu2>
+                <fdir1>0 0 1</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <link name="jetracer/FrontLeftWheelSteering">
+        <pose relative_to="jetracer/FrontLeftWheelSteeringJoint">0 0 0 0 0 0</pose>
+        <inertial>
+          <mass>0.005</mass>
+          <inertia>
+            <ixx>0.0000018</ixx>
+            <iyy>0.0000018</iyy>
+            <izz>0.0000018</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <link name="jetracer/RearRightWheel">
+        <pose relative_to="jetracer/RearRightWheelJoint">0 0 0 0 0 0</pose>
+        <inertial>
+          <mass>.05</mass>
+          <inertia>
+            <ixx>0.00003331</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0000204</iyy>
+            <iyz>0</iyz>
+            <izz>0.0000204</izz>
+          </inertia>
+        </inertial>
+        <gravity>true</gravity>
+        <velocity_decay/>
+        <visual name="jetracer/RearRightWheelVisual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>meshes/Wheel.dae</uri>
+              <scale>0.9041 0.866 0.9041</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="jetracer/RearRightWheelCollision">
+          <pose>0 .015 0 -1.5707 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.026</length>
+              <radius>0.033</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>1.0</mu2>
+                <fdir1>0 0 1</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <link name="jetracer/RearLeftWheel">
+        <pose relative_to="jetracer/RearLeftWheelJoint">0 0 0 0 0 0</pose>
+        <inertial>
+          <mass>.05</mass>
+          <inertia>
+            <ixx>0.00003331</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0000204</iyy>
+            <iyz>0</iyz>
+            <izz>0.0000204</izz>
+          </inertia>
+        </inertial>
+        <gravity>true</gravity>
+        <velocity_decay/>
+        <visual name="jetracer/RearLeftWheelVisual">
+          <pose>0 0 0 0 0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>meshes/Wheel.dae</uri>
+              <scale>0.9041 0.866 0.9041</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="jetracer/RearLeftWheelCollision">
+          <pose>0 -.015 0 -1.5707 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.026</length>
+              <radius>0.033</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>1.0</mu2>
+                <fdir1>0 0 1</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <joint name="jetracer/FrontRightWheelSteeringJoint" type="revolute">
+        <parent>jetracer/Base</parent>
+        <child>jetracer/FrontRightWheelSteering</child>
+        <pose relative_to="jetracer/Base">.064 -0.089 0 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.6</lower>
+            <upper>0.6</upper>
+            <velocity>1.0</velocity>
+            <effort>25</effort>
+          </limit>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <joint name="jetracer/FrontRightWheelJoint" type="revolute">
+        <parent>jetracer/FrontRightWheelSteering</parent>
+        <child>jetracer/FrontRightWheel</child>
+        <pose relative_to="jetracer/FrontRightWheelSteeringJoint">0 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.79769e+308</lower>
+            <upper>1.79769e+308</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <joint name="jetracer/FrontLeftWheelSteeringJoint" type="revolute">
+        <parent>jetracer/Base</parent>
+        <child>jetracer/FrontLeftWheelSteering</child>
+        <pose relative_to="jetracer/Base">.064 .089 0 0 0 0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.6</lower>
+            <upper>0.6</upper>
+            <velocity>1.0</velocity>
+            <effort>25</effort>
+          </limit>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <joint name="jetracer/FrontLeftWheelJoint" type="revolute">
+        <parent>jetracer/FrontLeftWheelSteering</parent>
+        <child>jetracer/FrontLeftWheel</child>
+        <pose relative_to="jetracer/FrontLeftWheelSteeringJoint">0 0 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.79769e+308</lower>
+            <upper>1.79769e+308</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <joint name="jetracer/RearRightWheelJoint" type="revolute">
+        <parent>jetracer/Base</parent>
+        <child>jetracer/RearRightWheel</child>
+        <pose relative_to="jetracer/Base">-0.088 -0.089 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.79769e+308</lower>
+            <upper>1.79769e+308</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <joint name="jetracer/RearLeftWheelJoint" type="revolute">
+        <parent>jetracer/Base</parent>
+        <child>jetracer/RearLeftWheel</child>
+        <pose relative_to="jetracer/Base">-0.088 0.089 0 0 0 0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.79769e+308</lower>
+            <upper>1.79769e+308</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <plugin
+        filename="ignition-gazebo-ackermann-steering-system"
+        name="ignition::gazebo::systems::AckermannSteering">
+        <left_joint>jetracer/FrontLeftWheelJoint</left_joint>
+        <left_joint>jetracer/RearLeftWheelJoint</left_joint>
+        <right_joint>jetracer/FrontRightWheelJoint</right_joint>
+        <right_joint>jetracer/FrontRightWheelJoint</right_joint>
+        <left_steering_joint>jetracer/FrontLeftWheelSteeringJoint</left_steering_joint>
+        <right_steering_joint>jetracer/FrontRightWheelSteeringJoint</right_steering_joint>
+        <kingpin_width>.18</kingpin_width>
+        <steering_limit>0.5</steering_limit>
+        <wheel_base>.2255</wheel_base>
+        <wheel_separation>.2</wheel_separation>
+        <wheel_radius>0.0365</wheel_radius>
+        <min_velocity>-100</min_velocity>
+        <max_velocity>100</max_velocity>
+        <min_acceleration>-5</min_acceleration>
+        <max_acceleration>5</max_acceleration>
+        <topic>/cmd_vel</topic>
+      </plugin>
+    </model>
+
+    <!-- Keyboard: moving forward -->
+    <plugin 
+        filename="libignition-gazebo-triggered-publisher-system.so"
+        name="ignition::gazebo::systems::TriggeredPublisher">
+      <input type="ignition.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">16777235</match> 
+      </input>
+      <output type="ignition.msgs.Twist" topic="/cmd_vel">
+        linear: {x: 0.5}, angular: {z: 0.0}
+      </output>
+    </plugin>
+
+    <!-- Keyboard: moving backward -->
+    <plugin
+        filename="libignition-gazebo-triggered-publisher-system.so"
+        name="ignition::gazebo::systems::TriggeredPublisher">
+      <input type="ignition.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">16777237</match>
+      </input>
+      <output type="ignition.msgs.Twist" topic="/cmd_vel">
+        linear: {x: -0.5}, angular: {z: 0.0}
+      </output>
+    </plugin>
+
+    <!-- Keyboard: turning left -->
+    <plugin
+        filename="libignition-gazebo-triggered-publisher-system.so"
+        name="ignition::gazebo::systems::TriggeredPublisher">
+      <input type="ignition.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">16777234</match>
+      </input>
+      <output type="ignition.msgs.Twist" topic="/cmd_vel">
+        linear: {x: 0.5}, angular: {z: 0.5}
+      </output>
+    </plugin>
+
+    <!-- Keyboard: turning right -->
+    <plugin
+        filename="libignition-gazebo-triggered-publisher-system.so"
+        name="ignition::gazebo::systems::TriggeredPublisher">
+      <input type="ignition.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">16777236</match>
+      </input>
+      <output type="ignition.msgs.Twist" topic="/cmd_vel">
+        linear: {x: 0.5}, angular: {z: -0.5}
+      </output>
+    </plugin>
+
+    <!-- Keyboard: stop -->
+    <plugin
+        filename="libignition-gazebo-triggered-publisher-system.so"
+        name="ignition::gazebo::systems::TriggeredPublisher">
+      <input type="ignition.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">83</match>
+      </input>
+      <output type="ignition.msgs.Twist" topic="/cmd_vel">
+        linear: {x: 0.0}, angular: {z: 0.0}
+      </output>
+    </plugin>
+
+
+  </world>
+</sdf>
