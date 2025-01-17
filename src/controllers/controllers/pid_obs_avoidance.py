@@ -93,7 +93,7 @@ class PID_OBS(Node):
         self.error_heading = 0.0
         self.calculate_grid_centers()
         self.actor = Actor(grid_size=self.grid_size)
-        self.final_target = np.array([5, 1], dtype=np.float32)
+        self.final_target = np.array([7, 7], dtype=np.float32)
         self.obs = None
 
 		# Load the state_dict into the model
@@ -126,7 +126,7 @@ class PID_OBS(Node):
         # Subscribe to ground truth pose of the robot
         self.tf_subscriber = self.create_subscription(
             TFMessage,
-            '/world/jetracer_world/dynamic_pose/info',
+            '/world/Jetracer_Warehouse/dynamic_pose/info',
             self.tf_callback,
             qos_profile
         )
@@ -189,7 +189,7 @@ class PID_OBS(Node):
         self.prev_error = error_heading
         self.integral += error_heading
         
-        if distance_to_target < 1:
+        if distance_to_target < 1.5:
             # self.get_logger().info(f"Target reached at x={x_robot}, y={y_robot}, Distance to target: {distance_to_target}, target_x: {self.final_target[0]}, target_y: {self.final_target[1]}")
             self.cmd.linear.x = 0.0
             self.cmd.angular.z = 0.0
