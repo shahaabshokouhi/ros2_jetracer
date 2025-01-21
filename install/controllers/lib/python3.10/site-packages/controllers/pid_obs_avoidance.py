@@ -93,7 +93,7 @@ class PID_OBS(Node):
         self.error_heading = 0.0
         self.calculate_grid_centers()
         self.actor = Actor(grid_size=self.grid_size)
-        self.final_target = np.array([7, 7], dtype=np.float32)
+        self.final_target = np.array([-15, -20], dtype=np.float32)
         self.obs = None
 
 		# Load the state_dict into the model

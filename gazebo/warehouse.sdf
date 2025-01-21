@@ -1,4 +1,4 @@
-
+<?xml version="1.0" ?>
 <sdf version='1.9'>
   <world name='Jetracer Warehouse'>
     <gravity>0 0 -9.8</gravity>
@@ -174,7 +174,7 @@
 
     <!-- Target marker -->
     <model name="target_marker">
-      <pose>7 7 0.2 0 0 0</pose>
+      <pose>-15 -20 0.2 0 0 0</pose>
       <link name="link">
           <visual name="visual">
               <geometry>
