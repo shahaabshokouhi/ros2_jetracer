@@ -255,9 +255,9 @@
       </link>
     </model>
 
-    <model name="obs1">
+    <model name="wall5">
       <static>true</static>
-      <pose>2 2 1.25 0 0 0</pose>
+      <pose>5.0 7.5 0 0 0 0</pose>
       <plugin filename="libignition-gazebo-touchplugin-system.so"
               name="ignition::gazebo::systems::TouchPlugin">
         <target>Jetracer</target>
@@ -275,7 +275,7 @@
         <visual name="visual">
           <geometry>
             <box>
-              <size>1.0 1.0 2.5</size>
+              <size>0.5 5.0 5.0</size>
             </box>
           </geometry>
           <material>
@@ -287,16 +287,16 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>1.0 1.0 2.5</size>
+              <size>0.5 5.0 5.0</size>
             </box>
           </geometry>
         </collision>
       </link>
     </model>
 
-    <model name="obs2">
+    <model name="wall6">
       <static>true</static>
-      <pose>2 0 1.25 0 0 0</pose>
+      <pose>2.5 5.0 0 0 0 1.57</pose>
       <plugin filename="libignition-gazebo-touchplugin-system.so"
               name="ignition::gazebo::systems::TouchPlugin">
         <target>Jetracer</target>
@@ -314,7 +314,7 @@
         <visual name="visual">
           <geometry>
             <box>
-              <size>1.0 1.0 2.5</size>
+              <size>0.5 5.0 5.0</size>
             </box>
           </geometry>
           <material>
@@ -326,16 +326,16 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>1.0 1.0 2.5</size>
+              <size>0.5 5.0 5.0</size>
             </box>
           </geometry>
         </collision>
       </link>
     </model>
 
-    <model name="obs3">
+    <model name="wall7">
       <static>true</static>
-      <pose>4.0 0 1.25 0 0 0</pose>
+      <pose>0 2 0 0 0 1.57</pose>
       <plugin filename="libignition-gazebo-touchplugin-system.so"
               name="ignition::gazebo::systems::TouchPlugin">
         <target>Jetracer</target>
@@ -353,7 +353,7 @@
         <visual name="visual">
           <geometry>
             <box>
-              <size>1.0 1.0 2.5</size>
+              <size>0.5 10.0 5.0</size>
             </box>
           </geometry>
           <material>
@@ -365,54 +365,370 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>1.0 1.0 2.5</size>
+              <size>0.5 10.0 5.0</size>
             </box>
           </geometry>
         </collision>
       </link>
     </model>
 
-    <model name="obs4">
-      <static>true</static>
-      <pose>-2.0 -2.0 1.25 0 0 0</pose>
-      <plugin filename="libignition-gazebo-touchplugin-system.so"
-              name="ignition::gazebo::systems::TouchPlugin">
-        <target>Jetracer</target>
-        <namespace>wall</namespace>
-        <time>0.001</time>
-        <enabled>true</enabled>
-      </plugin>
-      <link name="box">
-        <pose/>
-        <sensor name='sensor_contact' type='contact'>
-          <contact>
-            <collision>collision</collision>
-          </contact>
-        </sensor>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>1.0 1.0 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.0 0.0 1.0 1</ambient>
-            <diffuse>0.0 0.0 1.0 1</diffuse>
-            <specular>0.0 0.0 1.0 1</specular>
-          </material>
-        </visual>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>1.0 1.0 2.5</size>
-            </box>
-          </geometry>
-        </collision>
-      </link>
-    </model>
+    <model name="wall8">
+        <static>true</static>
+        <pose>-7.5 5.0 0 0 0 1.57</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>0.5 5.0 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 5.0 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+      <model name="wall9">
+        <static>true</static>
+        <pose>-5 -2 0 0 0 0</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>0.5 2.0 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 2.0 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+      <model name="wall10">
+        <static>true</static>
+        <pose>-9 0 0 0 0 1.57</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>0.5 2.0 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 2.0 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+      <model name="wall11">
+        <static>true</static>
+        <pose>5 -4 0 0 0 0</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>0.5 7.0 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 7.0 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+
+      <model name="wall12">
+        <static>true</static>
+        <pose>0 -4.5 0 0 0 0</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>0.5 5.0 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 5.0 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+      <model name="wall13">
+        <static>true</static>
+        <pose>-5 -5.5 0 0 0 0</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>0.5 2.0 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 2.0 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+      <model name="obs1">
+        <static>true</static>
+        <pose>-7 -4 0 0 0 0</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>0.5 0.5 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 0.5 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+      <model name="obs2">
+        <static>true</static>
+        <pose>-3 -3 0 0 0 0</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>1 1 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>1 1 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+      <model name="obs3">
+        <static>true</static>
+        <pose>-7 0 0 0 0 0</pose>
+        <plugin filename="libignition-gazebo-touchplugin-system.so"
+                name="ignition::gazebo::systems::TouchPlugin">
+          <target>Jetracer</target>
+          <namespace>wall</namespace>
+          <time>0.001</time>
+          <enabled>true</enabled>
+        </plugin>
+        <link name="box">
+          <pose/>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>1 1 5.0</size>
+              </box>
+            </geometry>
+            <material>
+              <ambient>0.0 0.0 1.0 1</ambient>
+              <diffuse>0.0 0.0 1.0 1</diffuse>
+              <specular>0.0 0.0 1.0 1</specular>
+            </material>
+          </visual>
+          <collision name="collision">
+            <geometry>
+              <box>
+                <size>1 1 5.0</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+      </model>
+
+
+
 
     <model name="target_marker">
-      <pose>5 1 0.2 0 0 0</pose>
+      <pose>-7.5 -7.5 0.2 0 0 0</pose>
       <link name="link">
           <visual name="visual">
               <geometry>
@@ -435,8 +751,18 @@
       </link>
     </model>
 
+    <!-- <actor name="actor_walking">
+        <skin>
+            <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
+            <scale>1.0</scale>
+        </skin>
+        <animation name="walk">
+            <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
+        </animation>
+    </actor> -->
+
     <model name="jetracer">
-      <pose relative_to="world">0 0 0 0 0 0</pose>
+      <pose relative_to="world">7.5 7.5 0 0 0 -1.57</pose>
       <self_collide>false</self_collide>
       <static>false</static>
      

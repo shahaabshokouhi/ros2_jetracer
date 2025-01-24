@@ -34,7 +34,7 @@ def generate_launch_description():
             package='ros_gz_bridge',
             executable='parameter_bridge',
             name='ros_ign_bridge_tf',
-            arguments=['/world/Jetracer_Warehouse/dynamic_pose/info@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V'],
+            arguments=['/world/jetracer_world/dynamic_pose/info@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V'],
             output='screen'
         ),
 

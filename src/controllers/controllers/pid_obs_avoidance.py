@@ -86,14 +86,14 @@ class PID_OBS(Node):
         self.grid_size = 10
         self.theta1 = 0
         self.theta2 = 120
-        self.radius = 3.5
+        self.radius = 1.5
         self.num_slices_angular = self.grid_size
         self.num_slices_radial = self.grid_size + 1
         self.rotation_angle = -self.theta2 / 2
         self.error_heading = 0.0
         self.calculate_grid_centers()
         self.actor = Actor(grid_size=self.grid_size)
-        self.final_target = np.array([-15, -20], dtype=np.float32)
+        self.final_target = np.array([-7.5, -7.5], dtype=np.float32)
         self.obs = None
 
 		# Load the state_dict into the model
@@ -126,7 +126,7 @@ class PID_OBS(Node):
         # Subscribe to ground truth pose of the robot
         self.tf_subscriber = self.create_subscription(
             TFMessage,
-            '/world/Jetracer_Warehouse/dynamic_pose/info',
+            '/world/jetracer_world/dynamic_pose/info',
             self.tf_callback,
             qos_profile
         )
